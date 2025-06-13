@@ -40,6 +40,15 @@ jobs:
       - name: Run tests
         run: python -Wall tests/runtests.py -v2
 
+      - name: Cleanup PSE
+        if: always()
+        uses: ir-bhuwan-panta/pse-action@test
+        with:
+          cleanup: "true"
+          debug: "true"
+          send_job_status: "true"
+          cleanup_step_name: "Cleanup PSE"
+
   javascript-tests:
     runs-on: ubuntu-latest
     name: JavaScript tests
